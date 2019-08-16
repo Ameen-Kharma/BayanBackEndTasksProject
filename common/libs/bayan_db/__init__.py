@@ -14,7 +14,7 @@ SQLA_ENGINE = '{driver}://{name}:{password}@{host}:{port}/{database_name}'.forma
                                                                                   port=port,
                                                                                   database_name=database_name)
 
-engine = sqlalchemy.create_engine(SQLA_ENGINE)
+engine = sqlalchemy.create_engine(SQLA_ENGINE, echo=True)
 
 session_factory = sessionmaker(bind=engine)
 Session = scoped_session(session_factory)

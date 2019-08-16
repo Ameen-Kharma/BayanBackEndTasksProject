@@ -1,0 +1,7 @@
+
+PASSWORD_SALT_LENGTH = 45
+
+
+class UserType:
+    MANAGER = 'MANAGER'
+    CUSTOMER = 'CUSTOMER'
