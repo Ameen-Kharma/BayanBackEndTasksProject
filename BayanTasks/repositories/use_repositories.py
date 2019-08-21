@@ -25,10 +25,7 @@ class UserRepo:
 
     @staticmethod
     def get_user_by_email(email):
-        try:
-            query = db_session.query(User).filter(User.email == email)
-        except Exception as e:
-            print(str(e))
+        query = db_session.query(User).filter(User.email == email)
         result = query.one_or_none()
         return result
 

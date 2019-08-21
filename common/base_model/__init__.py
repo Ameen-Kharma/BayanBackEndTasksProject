@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, TIMESTAMP, func
 
 
 class BaseModel(object):
-    id = Column(Integer, primary_key=True, nullable=False)
+    id = Column('id', Integer, primary_key=True, nullable=False)
     created = Column(TIMESTAMP, default=func.now())
     updated = Column(TIMESTAMP, default=func.now(), onupdate=func.current_timestamp())
 

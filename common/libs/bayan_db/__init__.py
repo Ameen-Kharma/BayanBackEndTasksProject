@@ -2,11 +2,11 @@ import sqlalchemy
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 driver = 'mysql+mysqldb'
-database_name = 'bayandatabase'
+database_name = 'bayan'
 name = 'root'
-dabase_password = ''
+dabase_password = 'root'
 host = 'localhost'
-port = 3308
+port = 3306
 
 
 SQLA_ENGINE = '{driver}://{name}:{password}@{host}:{port}/{database_name}'.format(driver=driver, name=name,
@@ -16,6 +16,8 @@ SQLA_ENGINE = '{driver}://{name}:{password}@{host}:{port}/{database_name}'.forma
 
 engine = sqlalchemy.create_engine(SQLA_ENGINE, echo=True)
 
-session_factory = sessionmaker(bind=engine)
-Session = scoped_session(session_factory)
+Session = sessionmaker(bind=engine)
+
+# session_factory = sessionmaker(bind=engine)
+# Session = scoped_session(session_factory)
 db_session = Session()
