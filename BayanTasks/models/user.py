@@ -23,17 +23,17 @@ class User(BayanBaseModel):
     encrypted_password = Column(String(45))
     user_salt = Column(String(45))
 
-    user_address = relationship("UserAddress", uselist=True)
-    #
-    # teams = relationship('Team',
-    #                      secondary=association_table_user_team,
-    #                      back_populates="users"
-    #                      )
-    #
-    # tasks = relationship('Task',
-    #                      secondary=association_table_user_task,
-    #                      back_populates="users"
-    #                      )
+    user_address = relationship("UserAddress", uselist=True, post_update=True)
+
+    teams = relationship('Team',
+                         secondary=association_table_user_team,
+                         back_populates="users"
+                         )
+
+    tasks = relationship('Task',
+                         secondary=association_table_user_task,
+                         back_populates="users"
+                         )
 
 
 class UserAddress(BayanBaseModel):
@@ -51,11 +51,11 @@ class Team(BayanBaseModel):
     __table_args__ = {'extend_existing': True}
 
     name = Column(String(45))
-    # tasks = relationship('Task')
-    # users = relationship(
-    #     "User",
-    #     secondary=association_table_user_team,
-    #     back_populates="teams")
+    tasks = relationship('Task')
+    users = relationship(
+        "User",
+        secondary=association_table_user_team,
+        back_populates="teams")
 
 
 class Task(BayanBaseModel):
@@ -69,7 +69,7 @@ class Task(BayanBaseModel):
     to_date = Column(TIMESTAMP)
 
     team_id = Column(Integer, ForeignKey('team.id'))
-    # users = relationship(
-    #     "User",
-    #     secondary=association_table_user_task,
-    #     back_populates="tasks")
+    users = relationship(
+        "User",
+        secondary=association_table_user_task,
+        back_populates="tasks")

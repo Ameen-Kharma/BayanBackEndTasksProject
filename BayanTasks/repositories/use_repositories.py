@@ -1,6 +1,7 @@
-from BayanTasks.models.user import User
+from BayanTasks.models.user import User, UserAddress
 from common.libs.bayan_db import db_session
 from BayanTasks.constant import UserType
+from sqlalchemy.orm import load_only
 class UserRepo:
 
     def __init__(self):
@@ -26,6 +27,12 @@ class UserRepo:
     @staticmethod
     def get_user_by_email(email):
         query = db_session.query(User).filter(User.email == email)
+        result = query.one_or_none()
+        return result
+
+    @staticmethod
+    def get_user_address():
+        query = db_session.query(UserAddress)
         result = query.one_or_none()
         return result
 

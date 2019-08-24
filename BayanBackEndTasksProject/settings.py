@@ -25,7 +25,7 @@ SECRET_KEY = '9f1s(^#(kstk9k&e(*ng3k0utj5#upt!3=patah=1w_(z8s($='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.17']
 
 
 # Application definition
@@ -126,3 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'BayanTasks.helper.exception_helper.bayan_exception_handler',
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}

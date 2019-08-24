@@ -1,7 +1,9 @@
 from django.utils.crypto import get_random_string
 from BayanTasks.constant import PASSWORD_SALT_LENGTH
 from BayanTasks.utils.helpers import encrypt_password
+
 from BayanTasks.repositories.use_repositories import UserRepo
+from BayanTasks.utils.exception import InvalidCredentialsException
 
 class UserComponent:
     """
@@ -40,10 +42,10 @@ class UserComponent:
                 request.session['user_type'] = user.type
                 return user
             else:
-                raise Exception
+                raise InvalidCredentialsException("wrong email or password")
 
         else:
-            raise Exception
+            raise InvalidCredentialsException("wrong email or password")
 
     @staticmethod
     def logout(request):

@@ -1,7 +1,7 @@
 import sqlalchemy
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-driver = 'mysql+mysqldb'
+driver = 'mysql'
 database_name = 'bayan'
 name = 'root'
 dabase_password = 'root'

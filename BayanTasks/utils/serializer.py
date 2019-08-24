@@ -21,7 +21,4 @@ class UserAddressSerializer(AppSerializer):
 class UserSerializer(AppSerializer):
     class Meta:
         model = User
-        #exclude = ('encrypted_password', 'user_salt', 'created', 'updated', 'teams', 'tasks')
-
-    user_address = fields.Nested(UserAddressSerializer, many=False)
-
+        exclude = ('encrypted_password', 'user_salt', 'created', 'updated', 'teams', 'tasks', 'user_address')

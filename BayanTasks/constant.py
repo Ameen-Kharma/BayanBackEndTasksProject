@@ -2,6 +2,14 @@
 PASSWORD_SALT_LENGTH = 45
 
 
+class StatusCodes:
+    OK = 200
+    ERROR = 600
+    INVALID_CREDENTIALS = 601
+    USER_ALREADY_EXISTS = 602
+
+
+
 class UserType:
     MANAGER = 'MANAGER'
     CUSTOMER = 'CUSTOMER'
