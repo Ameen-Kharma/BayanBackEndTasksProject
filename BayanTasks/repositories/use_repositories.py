@@ -1,4 +1,4 @@
-from BayanTasks.models.user import User, UserAddress
+from BayanTasks.models.user import User, UserAddress, Task
 from common.libs.bayan_db import db_session
 from BayanTasks.constant import UserType
 from sqlalchemy.orm import load_only
@@ -36,4 +36,10 @@ class UserRepo:
         result = query.one_or_none()
         return result
 
+    @staticmethod
+    def get_user_tasks_by_user_id(user_id):
 
+        query = db_session.query(Task).filter(Task.user_id == user_id)
+        result = query.all()
+
+        return result

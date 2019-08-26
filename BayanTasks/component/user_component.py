@@ -5,6 +5,7 @@ from BayanTasks.utils.helpers import encrypt_password
 from BayanTasks.repositories.use_repositories import UserRepo
 from BayanTasks.utils.exception import InvalidCredentialsException
 
+
 class UserComponent:
     """
     this class doing the logic for the user controller such as registration ans login and other logic
@@ -12,7 +13,6 @@ class UserComponent:
     """
     def __init__(self):
         pass
-
 
     @staticmethod
     def create_user(user_name, user_email, plain_password):
@@ -55,3 +55,8 @@ class UserComponent:
     def generate_user_random_salt():
         salt = get_random_string(length=PASSWORD_SALT_LENGTH)
         return salt
+
+    @staticmethod
+    def get_task_by_user_id(user_id):
+        tasks = UserRepo.get_user_tasks_by_user_id(user_id=user_id)
+        return tasks

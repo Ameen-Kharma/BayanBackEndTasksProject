@@ -3,9 +3,10 @@ from common.libs.bayan_db import db_session
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 
-from BayanTasks.utils.serializer import UserSerializer
+from BayanTasks.utils.serializer import UserSerializer, TaskSerializer
 from BayanTasks.utils.smart_response import smart_response
 from BayanTasks.component.user_component import UserComponent
+from BayanTasks.component.authorization import Authorization
 
 
 class UserViewSet(ViewSet):
@@ -57,10 +58,20 @@ class UserLoginViewSet(ViewSet):
 
         user = UserSerializer().dump(user).data
         return smart_response(user, 200)
-        # result = {
-        #     'status': 'Success',
-        #     'statusCode': 200,
-        #     'data': user
-        # }
-        # return Response(result, status=200)
+
+
+class UserTaskViewSet(ViewSet):
+    def __init__(self, **kwargs):
+        pass
+
+    def list(self, request, user_pk):
+        logged_in_user_id = request.session.get("user_id")
+        Authorization.can_manage_user(logged_in_user_id=logged_in_user_id, user_id=user_pk)
+        tasks = UserComponent.get_task_by_user_id(user_pk)
+
+        tasks = TaskSerializer(many=True).dump(tasks).data
+        return smart_response(tasks, 200)
+
+    def retrieve(self, request, user_pk, pk):
+        return Response("success", 200)
 
