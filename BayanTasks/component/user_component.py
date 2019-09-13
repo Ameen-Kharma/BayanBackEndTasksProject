@@ -60,3 +60,8 @@ class UserComponent:
     def get_task_by_user_id(user_id):
         tasks = UserRepo.get_user_tasks_by_user_id(user_id=user_id)
         return tasks
+
+    @staticmethod
+    def create_user_task(task_from, task_to, task_title, task_description):
+        task = UserRepo.crete_user_task()
+        r

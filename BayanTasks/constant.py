@@ -9,7 +9,12 @@ class StatusCodes:
     USER_ALREADY_EXISTS = 602
 
 
-
 class UserType:
     MANAGER = 'MANAGER'
     CUSTOMER = 'CUSTOMER'
+
+
+class TaskStatus:
+    INPROGRESS = 'INPROGRESS'
+    COMPLEATED = 'COMPLETED'
+

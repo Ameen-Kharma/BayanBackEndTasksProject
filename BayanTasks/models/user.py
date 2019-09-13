@@ -1,5 +1,5 @@
-from common.base_model import BayanBaseModel
-from sqlalchemy import Column, Integer, String, Enum, Float, ForeignKey, Table, TIMESTAMP
+from BayanTasks.common.base_model import BayanBaseModel
+from sqlalchemy import Column, Integer, String, Enum, Float, ForeignKey, TIMESTAMP
 from sqlalchemy.orm import relationship
 
 # class UserTask(BayanBaseModel):
@@ -55,8 +55,10 @@ class Task(BayanBaseModel):
     __tablename__ = 'task'
 
     tittle = Column(String(45))
-    status = Column(Enum('ONPROGRESS', 'COMPLITED'))
+    description = Column(String(512))
+    status = Column(Enum('INPROGRESS', 'COMPLETED'))
     target = Column(Enum('USER', 'TEAM'))
+    task_from = Column(String(45))
     from_date = Column(TIMESTAMP)
     to_date = Column(TIMESTAMP)
 
